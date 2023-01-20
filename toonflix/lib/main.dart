@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:toonflix/widgets/button.dart';
+import 'package:toonflix/widgets/currency_card.dart';
 
 void main() {
   runApp(const App());
@@ -12,13 +14,12 @@ class App extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: const Color(0xFF181818),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 40,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 15,
+            ),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               const SizedBox(
                 height: 80,
               ),
@@ -37,7 +38,7 @@ class App extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Welcome back',
+                        'Welcome bac',
                         style: TextStyle(
                           color: Color.fromRGBO(255, 255, 255, 0.8),
                           fontSize: 18,
@@ -48,7 +49,7 @@ class App extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                height: 120,
+                height: 50,
               ),
               Text(
                 'Total Balance',
@@ -72,28 +73,65 @@ class App extends StatelessWidget {
                 height: 30,
               ),
               Row(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFF1B33B),
-                      borderRadius: BorderRadius.circular(45),
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 20,
-                        horizontal: 50,
-                      ),
-                      child: Text(
-                        'Transfer',
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
-                      ),
-                    ),
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Button(
+                    text: 'Transfer',
+                    bgcolor: Color(0xFFF1B33B),
+                    textColor: Colors.black,
+                  ),
+                  Button(
+                    text: 'Request',
+                    bgcolor: Color(0xFF1F2123),
+                    textColor: Colors.white,
                   )
                 ],
               ),
-            ],
+              const SizedBox(
+                height: 100,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Wallets',
+                    style: TextStyle(color: Colors.white, fontSize: 36, fontWeight: FontWeight.w600),
+                  ),
+                  Text('View All', style: TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 18))
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const CurrencyCard(
+                name: 'Euro',
+                code: 'EUR',
+                amount: '6 428',
+                icon: Icons.euro_rounded,
+                isInverted: false,
+              ),
+              Transform.translate(
+                offset: const Offset(0, -20),
+                child: const CurrencyCard(
+                  name: 'Bitcoin',
+                  code: 'BTC',
+                  amount: '9 785',
+                  icon: Icons.currency_bitcoin_rounded,
+                  isInverted: true,
+                ),
+              ),
+              Transform.translate(
+                offset: const Offset(0, -40),
+                child: const CurrencyCard(
+                  name: 'Dollar',
+                  code: 'USD',
+                  amount: '428',
+                  icon: Icons.attach_money_rounded,
+                  isInverted: false,
+                ),
+              ),
+            ]),
           ),
         ),
       ),
